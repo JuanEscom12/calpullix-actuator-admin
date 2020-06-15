@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: calpullix-actuator-admin
+  boot:
+    admin:
+      discovery:
+        ignored-services: gateway-service
+      routes:
+        endpoints:
+          - auditevents
+          - beans
+          - conditions
+          - configprops
+          - env
+          - flyway
+          - health
+          - heapdump
+          - info
+          - liquibase
+          - logfile
+          - loggers
+          - metrics
+          - prometheus
+          - scheduledtasks
+          - sessions
+          - shutdown
+          - threaddump
+
+  config:
+    name: '${spring.application.name}'
+
+        
+server:
+  port: 9550
+
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost  
+       
+logging:
+  level:
+    org:
+      springframework.web: DEBUG
+      springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+      springframework.web.servlet.DispatcherServlet: DEBUG
+      springframework.cloud.sleuth: DEBUG
+    com.calpullix.service.login: DEBUG
+  pattern:
+    level: '[%X{data}%thread][%X{X-B3-TraceId:-}]-%5p'
+    
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+  health:
+    defaults:
+      enabled: true
+    jms:
+      enabled: false
+    

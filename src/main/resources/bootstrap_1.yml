@@ -1,0 +1,13 @@
+spring:
+  application: 
+    name: calpullix-actuator-admin
+  config:
+    name: '${spring.application.name}'
+  cloud:
+    config:
+      url: http://localhost:8888
+  profiles:
+    active: composite
+    
+server:
+  port: 9500

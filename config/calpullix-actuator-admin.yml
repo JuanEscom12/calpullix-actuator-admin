@@ -1,0 +1,49 @@
+spring:
+  boot:
+    admin:
+      routes:
+        endpoints:
+          - auditevents
+          - beans
+          - conditions
+          - configprops
+          - env
+          - flyway
+          - health
+          - heapdump
+          - info
+          - liquibase
+          - logfile
+          - loggers
+          - metrics
+          - prometheus
+          - scheduledtasks
+          - sessions
+          - shutdown
+          - threaddump
+
+            
+logging:
+  level:
+    org:
+      springframework.web: DEBUG
+      springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+      springframework.web.servlet.DispatcherServlet: DEBUG
+      springframework.cloud.sleuth: DEBUG
+    com.calpullix.service.login: DEBUG
+  pattern:
+    level: '[%X{data}%thread][%X{X-B3-TraceId:-}]-%5p'
+    
+    
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+  health:
+    defaults:
+      enabled: true
+    jms:
+      enabled: false
+      
